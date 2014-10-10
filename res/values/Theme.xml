@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle"> @style/CustomActionBar</item>
+    </style>
+
+    <style name="CustomActionBar" parent="@android:style/Widget.DeviceDefault.Light.ActionBar">
+        <item name="android:displayOptions">homeAsUp|useLogo|showHome|showTitle</item>
+        <item name="android:background">@color/green_new</item>
+        <item name="android:backgroundSplit">@color/green_new</item>
+    </style>
+</resources>
