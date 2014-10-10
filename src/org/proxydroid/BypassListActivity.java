@@ -51,9 +51,6 @@ import java.util.ArrayList;
 import org.proxydroid.utils.Constraints;
 import org.proxydroid.utils.Utils;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -66,6 +63,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -80,7 +78,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BypassListActivity extends SherlockActivity implements
+public class BypassListActivity extends Activity implements
 		OnClickListener, OnItemClickListener, OnItemLongClickListener {
 
 	private static final String TAG = BypassListActivity.class.getName();
@@ -176,7 +174,7 @@ public class BypassListActivity extends SherlockActivity implements
 
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		setContentView(R.layout.bypass_list);
 		TextView addButton = (TextView) findViewById(R.id.addBypassAddr);

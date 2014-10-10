@@ -13,9 +13,6 @@ import java.util.Vector;
 import org.proxydroid.utils.ImageLoader;
 import org.proxydroid.utils.ImageLoaderFactory;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -30,6 +27,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -46,7 +44,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class AppManager extends SherlockActivity implements OnCheckedChangeListener,
+public class AppManager extends Activity implements OnCheckedChangeListener,
 		OnClickListener {
 
 	private ProxyedApp[] apps = null;
@@ -138,13 +136,9 @@ public class AppManager extends SherlockActivity implements OnCheckedChangeListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		this.setContentView(R.layout.layout_apps);
-
 		dm = ImageLoaderFactory.getImageLoader(this);
-
 		this.overlay = (TextView) View.inflate(this, R.layout.overlay, null);
 		getWindowManager()
 				.addView(

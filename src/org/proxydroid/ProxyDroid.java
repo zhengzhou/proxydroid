@@ -38,6 +38,7 @@
 
 package org.proxydroid;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -62,12 +63,15 @@ import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.webkit.WebView;
@@ -75,9 +79,6 @@ import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
@@ -97,8 +98,7 @@ import org.proxydroid.db.DatabaseHelper;
 import org.proxydroid.utils.Constraints;
 import org.proxydroid.utils.Utils;
 
-public class ProxyDroid extends SherlockPreferenceActivity
-    implements OnSharedPreferenceChangeListener {
+public class ProxyDroid extends PreferenceActivity  implements OnSharedPreferenceChangeListener {
 
   private static final String TAG = "ProxyDroid";
   private static final int MSG_UPDATE_FINISHED = 0;
@@ -140,7 +140,7 @@ public class ProxyDroid extends SherlockPreferenceActivity
   private CheckBoxPreference isBypassAppsCheck;
   private Preference proxyedApps;
   private Preference bypassAddrs;
-  private AdView adView;
+
   private BroadcastReceiver ssidReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -301,18 +301,18 @@ public class ProxyDroid extends SherlockPreferenceActivity
     addPreferencesFromResource(R.xml.proxydroid_preference);
 
     // Create the adView
-    adView = new AdView(this, AdSize.SMART_BANNER, "a14db2c016cb9b6");
+    //adView = new AdView(this, AdSize.SMART_BANNER, "a14db2c016cb9b6");
     // Lookup your LinearLayout assuming it’s been given
     // the attribute android:id="@+id/mainLayout"
     ViewParent parent = getListView().getParent();
     LinearLayout layout = getLayout(parent);
-    if (layout != null) {
-      // Add the adView to it
-      layout.addView(adView, 0);
-      // Initiate a generic request to load it with an ad
-      AdRequest aq = new AdRequest();
-      adView.loadAd(aq);
-    }
+//    if (layout != null) {
+//      // Add the adView to it
+//      layout.addView(adView, 0);
+//      // Initiate a generic request to load it with an ad
+//      AdRequest aq = new AdRequest();
+//      adView.loadAd(aq);
+//    }
 
     hostText = (EditTextPreference) findPreference("host");
     portText = (EditTextPreference) findPreference("port");
@@ -404,11 +404,8 @@ public class ProxyDroid extends SherlockPreferenceActivity
   /** Called when the activity is closed. */
   @Override
   public void onDestroy() {
-
-    if (adView != null) adView.destroy();
-
+//    if (adView != null) adView.destroy();
     if (ssidReceiver != null) unregisterReceiver(ssidReceiver);
-
     super.onDestroy();
   }
 
